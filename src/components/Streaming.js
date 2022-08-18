@@ -27,14 +27,13 @@ export default function Streaming() {
 }
 const Container=styled.div`
 max-width:100vw;
-max-height:100vw;
-
+max-height:100vh;
 overflow:hidden;
 display:grid;
 grid-template-rows: 85vh 15vh;
 .streaming_body{
-    display:grid;
-    grid-template-columns: 18vw 85vw;
+    display: flex;
+    align-items: stretch;
     height:100%;
     width:100%;
     background-color:#363636;
@@ -43,9 +42,5 @@ grid-template-rows: 85vh 15vh;
     height:100%;
     width:100%;
     overflow:auto;
-    
-    
-
-
 }
 `
