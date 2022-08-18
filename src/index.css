@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.container{
+  background: url('/home/gracius/streaming-app/src/img/casque.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat:no-repeat;
+  height:100vh;
+}
+img{
+  width: 100%;
+  height: 100%;
+  margin-bottom: 40px;
+
+}
+
+button{
+
+background-color: rgb(94, 70, 70);
+  border-radius: 22px;
+  padding: 20px;
+  cursor: pointer;
+  border: none;
+}
+button:hover{
+  color: #fff;
+  font-size: 1.1rem;
+  
+  }
