@@ -11,6 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+*{
+  text-transform: capitalize;
+  font-family: "poppins", serif;
+}
 .container{
   background: url('/home/gracius/streaming-app/src/img/casque.jpg');
   background-position: center center;
@@ -36,5 +40,6 @@ background-color: rgb(94, 70, 70);
 button:hover{
   color: #fff;
   font-size: 1.1rem;
+  background-color: #ff7800;
   
   }

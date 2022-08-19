@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { IoLibrary } from "react-icons/io5";
 import { MdHomeFilled, MdSearch } from "react-icons/md";
 import Playlist from "./Playlist";
+import {BiHeadphone} from "react-icons/bi"
 
 export default function Sidebar() {
   return (
     <Container>
       <div className="top_links">
         <div className="logo">
+       <span className="head-phone"><BiHeadphone/></span> 
           <h1> El magni</h1>
         </div>
         <ul>
@@ -50,10 +52,23 @@ const Container = styled.div`
     flex-direction:column;
   
     .logo{
+      display:flex;
+      flex-direction:row;
+    gap:1rem;
+      align-items:center;
+     margin:66px
       text-align:center;
-      margin:1rem 0;
+      margin-top:1rem ;
+      margin-left:1rem
      
     }
+  .head-phone svg{
+     height:40px;
+     width:40px;
+   }
+   h1{
+   color: #ff7800;
+   }
    
    
     ul{
@@ -62,10 +77,12 @@ const Container = styled.div`
       flex-direction:column;
       gap:1rem;
       padding:1rem;
+     
   }
   li{
     display:flex;
     gap:1rem;
+   
     cursor:pointer;
     transition:0.3s ease-in-out;
     &:hover{

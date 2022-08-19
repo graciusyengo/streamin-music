@@ -23,6 +23,7 @@ export default function Login() {
   };
   return (
     <Container className="container">
+      <h1> el magni Music</h1>
       <button onClick={handleClick}>connecte toi</button>
     </Container>
   );
@@ -33,4 +34,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  h1{
+    font-size:56px;
+ 
+  }
 `;

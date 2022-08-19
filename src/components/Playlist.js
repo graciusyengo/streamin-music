@@ -41,6 +41,18 @@ export default function Playlist() {
         })
         
       } 
+       {
+        playlists.map(({name,id})=>{
+          return(
+            <li key={id}>{name}</li>
+          )
+        })
+        
+      } 
+      
+      
+      
+       
      
 
     </ul>
@@ -54,6 +66,7 @@ overflow:hidden;
 ul{
   list-style-type:none;
   display:flex;
+  
   flex-direction:column;
   gap:1rem;
   padding:1rem;
@@ -69,6 +82,7 @@ ul{
   
 li{
 display:flex;
+
 gap:1rem;
 cursor:pointer;
 color:#fff;
