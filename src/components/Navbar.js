@@ -4,12 +4,12 @@ import {FaSearch} from "react-icons/fa"
 import {CgProfile} from "react-icons/cg"
 import { useStateProvider } from '../util/StateProvider'
 
-export default function Navbar() {
+export default function Navbar({navBackground}) {
     const [{ userInfo }] = useStateProvider();
  
     
   return (
-    <Container>
+    <Container navBackground={navBackground}>
     <div className="search_bar">
         <FaSearch />
         <input type="text" placeholder='Artiste son et album' />
@@ -37,7 +37,7 @@ height:15vh;
 position:sticky;
 top:0;
 transition: 0.3 ease-in-out;
-background-color:none;
+background-color:${({navBackground})=>navBackground ? "rgba(0,0,0,0.7)":"none"};
 .search_bar{
     background-color:white;
     width:30%;
@@ -80,6 +80,12 @@ background-color:none;
         text-decoration:none;
         color:white;
         font-weight:bold;
+      
+        span:hover{
+            color:#ff7800;
+            transition:0.4s ease-in-out ;
+            
+        }
         svg{
             font-size:1.4rem;
             background-color:#282828;
