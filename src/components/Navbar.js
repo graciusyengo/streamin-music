@@ -1,18 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {FaSearch} from "react-icons/fa"
 import {CgProfile} from "react-icons/cg"
 import { useStateProvider } from '../util/StateProvider'
+import axios from 'axios'
+import Recherche from './Recherche'
 
 export default function Navbar({navBackground}) {
-    const [{ userInfo }] = useStateProvider();
- 
+    const [{ token, userInfo }, dispatch] = useStateProvider();
+    const [artists,setArtist]=useState([])
+    const [search, setSearch] = useState('');
+    
+        const getSearchArtist = async () => {
+            const response = await axios.get("https://api.spotify.com/v1/search", {
+              headers: {
+                Authorization: "Bearer "+ token,
+              },
+              params: {
+                  q: search,
+                  type: "artist",
+              }
+            });
+
+            setArtist(response.data.artists.items)
+            console.log(artists)
+            };
+            getSearchArtist()
+
+            
+    
+    const renderSearchArtist=()=>{
+        return artists.map((artist)=>(
+            <div key={artist.id}>
+                { artist.images.length? (
+                    <img  width="20%" src={artist.images[0].url} alt="" />
+                    
+
+                ): (
+                    <div>pas d'info</div>
+                
+                )}
+                {artist.name}
+                </div>
+
+        ))
+        
+        
+    }
+  
+    
+
+    const getInput = (e) => {
+        setSearch(e.target.value);
+    }
     
   return (
+    <>
     <Container navBackground={navBackground}>
     <div className="search_bar">
         <FaSearch />
-        <input type="text" placeholder='Artiste son et album' />
+        <input type="search" placeholder='Artiste son et album' onChange={getInput}/>
     </div>
     <div className="avatar">
        
@@ -23,8 +70,9 @@ export default function Navbar({navBackground}) {
         </a>
     </div>
 
-
     </Container>
+    {search? renderSearchArtist():null}
+    </>
   )
 }
 
