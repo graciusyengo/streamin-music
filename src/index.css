@@ -16,7 +16,7 @@ code {
   font-family: "poppins", serif;
 }
 .container{
-  background: url('/home/gracius/streaming-app/src/img/casque.jpg');
+  background: url('./img/casque.jpg');
   background-position: center center;
   background-size: cover;
   background-repeat:no-repeat;
