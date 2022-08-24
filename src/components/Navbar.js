@@ -1,91 +1,101 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import {FaSearch} from "react-icons/fa"
-import {CgProfile} from "react-icons/cg"
-import { useStateProvider } from '../util/StateProvider'
-import axios from 'axios'
-import Recherche from './Recherche'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { FaSearch } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { useStateProvider } from "../util/StateProvider";
+import axios from "axios";
+import {BsFillPlayCircleFill} from "react-icons/bs"
 
-export default function Navbar({navBackground}) {
-    const [{ token, userInfo }, dispatch] = useStateProvider();
-    const [artists,setArtist]=useState([])
-    const [search, setSearch] = useState('');
+export default function Navbar({ navBackground }) {
+  const [{ token, userInfo }, dispatch] = useStateProvider();
+  const [artists, setArtist] = useState([]);
+  const [search, setSearch] = useState("");
+ 
+
+  const getSearchArtistTrack = async () => {
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      params: {
+        q: search,
+        type: "playlist,album,track,artist",
+      },
+    });
+
+    setArtist(response.data.artists.items);
+    // setPlayTrack(response.data.track.items.uri);
+    console.log(response.data);
     
-        const getSearchArtist = async () => {
-            const response = await axios.get("https://api.spotify.com/v1/search", {
-              headers: {
-                Authorization: "Bearer "+ token,
-              },
-              params: {
-                  q: search,
-                  type: "artist",
-              }
-            });
-
-            setArtist(response.data.artists.items)
-            console.log(artists)
-            };
-            getSearchArtist()
-
-            
-    
-    const renderSearchArtist=()=>{
-        return artists.map((artist)=>(
-            <div key={artist.id}>
-                { artist.images.length? (
-                    <img  width="20%" src={artist.images[0].url} alt="" />
-                    
-
-                ): (
-                    <div>pas d'info</div>
-                
-                )}
-                {artist.name}
-                </div>
-
-        ))
-        
-        
-    }
+    // console.log(response.data.track.items);
+  };
+  getSearchArtistTrack();
   
-    
+  
+  
+ 
+   
 
-    const getInput = (e) => {
-        setSearch(e.target.value);
-    }
-    
+  const renderSearchArtist = () => {
+    return artists.map((artist) => (
+      <div key={artist.id} className="card-artist">
+        {artist.images.length ? (
+          <>
+            <div className="card-image">
+              <img src={artist.images[0].url} alt=""  />
+              <button className="btn"><BsFillPlayCircleFill/></button>
+            </div>
+            <div className="card-body">{artist.name}</div>
+          </>
+        ) : (
+          <div>pas d'info</div>
+        )}
+      </div>
+    ));
+  };
+
+  const getInput = (e) => {
+    setSearch(e.target.value);
+  };
+ 
+
   return (
     <>
-    <Container navBackground={navBackground}>
-    <div className="search_bar">
-        <FaSearch />
-        <input type="search" placeholder='Artiste son et album' onChange={getInput}/>
-    </div>
-    <div className="avatar">
-       
-        <a href="">
-        <CgProfile/>
-        <span>{userInfo?.userName}</span>
-
-        </a>
-    </div>
-
-    </Container>
-    {search? renderSearchArtist():null}
+      <Container navBackground={navBackground}>
+        <div className="search_bar">
+          <FaSearch />
+          <input
+            type="search"
+            placeholder="Artiste son et album"
+            onChange={getInput}
+          />
+        </div>
+        <div className="avatar">
+          <a href="">
+            <CgProfile />
+            <span>{userInfo?.userName}</span>
+          </a>
+        </div>
+      </Container>
+      <div className="artist-container">
+      {search ? renderSearchArtist() : null}
+      </div>
     </>
-  )
+  );
 }
 
-const Container=styled.div`
+const Container = styled.div`
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:2rem;
 height:15vh;
 position:sticky;
+z-index:44;
 top:0;
 transition: 0.3 ease-in-out;
-background-color:${({navBackground})=>navBackground ? "rgba(0,0,0,0.7)":"none"};
+background-color:${({ navBackground }) =>
+  navBackground ? "rgba(0,0,0,0.7)" : "none"};
 .search_bar{
     background-color:white;
     width:30%;
@@ -145,6 +155,7 @@ background-color:${({navBackground})=>navBackground ? "rgba(0,0,0,0.7)":"none"};
             border-radius:1rem;
         }
     }
+   
 
 }
-`
+`;

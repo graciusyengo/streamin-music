@@ -1,11 +1,13 @@
 import React from 'react'
 import SpotifyPlayer from 'react-spotify-web-playback/lib'
+import { useStateProvider } from "../util/StateProvider";
 
 function PlayerControl() {
+  const [{ token},dispatch] = useStateProvider();
   return (
     <div>
       <SpotifyPlayer
-        token="BQAZv4iwBo_WfY-Qwr_r03SkR2eTnb5O6B2lo5C7r7upgwFoPIM7FOqicy_kvUMdWrayxPumz8lm6tu558XNguw2dU-gsW4M0dwd_X_xkxeel7GhAsQyx7urDTMeBA3o0zZ0zqEc5TiBaPL31r7RVoSK_AU8r7TbYPBgKK5zHERp-8CRUeGsQjNW6MGl7B4TQHUmBErAkE42rz7SyQsET146mqy0aTnIqGeQUeInX7t9ZrmNsrHFiIj0EJIHQU1SHP-vDByM9yfOs49U2odZV_USmxEpCxG08DfokCQTOTXmX9Jyk1N6DJvdJxMlm32kzC9dUg"
+        token={token}
         uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
       />;
     </div>
@@ -13,15 +15,6 @@ function PlayerControl() {
 }
 
 export default PlayerControl
-
-
-
-
-
-
-
-
-
 
 // import React from 'react'
 // import styled from 'styled-components'
