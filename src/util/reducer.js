@@ -2,14 +2,15 @@
 import { reducerCases } from "./Constant"
 
 export const initialState  ={
-    token:null,
+    token:window.localStorage.getItem('token'),
     playlists:[],
     userInfo:null,
     selectedPlayListId:"7tqiNqaXI5fdJdf5cgGpjF",
     selectedPlaylist:null,
     currentlyPlaying:null,
     playerState:false,
-    playerTrack:false,
+
+   // playerTrack:false,
 
 }
 const reducer=(state,action)=>{
@@ -47,6 +48,7 @@ const reducer=(state,action)=>{
                 ...state,playerState:action.playerState,
             }
         }
+       
 
         default: return state
 
