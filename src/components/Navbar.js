@@ -10,42 +10,50 @@ export default function Navbar({ navBackground }) {
   const [{ token, userInfo }, dispatch] = useStateProvider();
   const [artists, setArtist] = useState([]);
   const [search, setSearch] = useState("");
+  const [albums, setAlbums] = useState([])
  
 
-  const getSearchArtistTrack = async () => {
-    const response = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-      params: {
-        q: search,
-        type: "playlist,album,track,artist",
-      },
-    });
-
-    setArtist(response.data.artists.items);
-    // setPlayTrack(response.data.track.items.uri);
-    console.log(response.data);
-    
-    // console.log(response.data.track.items);
-  };
-  getSearchArtistTrack();
+  useEffect(() => {
+    const getSearchArtistTrackAlbum = async () => {
+      const response = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+        params: {
+          q: search,
+          type: "playlist,album,track,artist",
+        },
+      });
+  
+      setArtist(response.data.artists.items);
+      setAlbums(response.data.albums.items);
+  
+      // setPlayTrack(response.data.track.items.uri);
+      // console.log(response.data);
+      
+      // console.log(response.data.track.items);
+    };
+    getSearchArtistTrackAlbum();
+  }, [token, ])
   
   
   
+ const  handleClickCard=(search)=>{
+  console.log(search)
+ }
  
    
 
-  const renderSearchArtist = () => {
-    return artists.map((artist) => (
-      <div key={artist.id} className="card-artist">
-        {artist.images.length ? (
+  const renderSearch = (searches) => {
+    return searches.map((search) => (
+      <div key={search.id} className="card-artist">
+        {search.images.length ? (
           <>
             <div className="card-image">
-              <img src={artist.images[0].url} alt=""  />
-              <button className="btn"><BsFillPlayCircleFill/></button>
+              <img src={search.images[0].url} alt=""  />
+              <button className="btn" onClick={() =>handleClickCard(search.uri)}><BsFillPlayCircleFill/></button>
             </div>
-            <div className="card-body">{artist.name}</div>
+            <div className="card-body">{search.name}</div>
           </>
         ) : (
           <div>pas d'info</div>
@@ -53,6 +61,18 @@ export default function Navbar({ navBackground }) {
       </div>
     ));
   };
+
+  function artist () {
+    return <>
+    <h1>Artiste</h1>
+    {renderSearch(artists)}
+    </>
+    
+  }
+
+  function album() {
+    return renderSearch(albums);
+  }
 
   const getInput = (e) => {
     setSearch(e.target.value);
@@ -78,7 +98,10 @@ export default function Navbar({ navBackground }) {
         </div>
       </Container>
       <div className="artist-container">
-      {search ? renderSearchArtist() : null}
+      {search ? <>
+      {album()}
+      
+      </> : null}
       </div>
     </>
   );

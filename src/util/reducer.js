@@ -9,6 +9,8 @@ export const initialState  ={
     selectedPlaylist:null,
     currentlyPlaying:null,
     playerState:false,
+    playerTrack:false,
+
 }
 const reducer=(state,action)=>{
     switch(action.type){

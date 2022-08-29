@@ -36,7 +36,7 @@ export default function CurrentTrack() {
  
   return (
     <Container>
-      { currentlyPlaying &&(
+      {currentlyPlaying &&(
         <div className="track">
           <div className="track_image">
             <img src= {currentlyPlaying.image} alt="currentlyPlaying" />
