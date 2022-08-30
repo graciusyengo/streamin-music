@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { useStateProvider } from "../util/StateProvider";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import { MyContext } from "./MyContext";
-
+import { reducerCases } from "../util/Constant";
 export default function Navbar({ navBackground }) {
   const [{ token, userInfo }, dispatch] = useStateProvider();
   const [artists, setArtist] = useState([]);
@@ -74,6 +75,15 @@ export default function Navbar({ navBackground }) {
     setSearch(e.target.value);
   };
 
+  function disconnect() {
+    dispatch({
+      type: reducerCases.SET_TOKEN,
+      token: "",
+    });
+    window.localStorage.removeItem("token");
+
+  }
+
   return (
     <>
       <Container navBackground={navBackground}>
@@ -90,6 +100,9 @@ export default function Navbar({ navBackground }) {
             <CgProfile />
             <span>{userInfo?.userName}</span>
           </a>
+           <Link to='/'> 
+           <button onClick={disconnect}> se deconnecter</button> 
+           </Link> 
         </div>
       </Container>
       <div className="artist-container">

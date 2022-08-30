@@ -6,9 +6,7 @@ import { MyContext } from './MyContext';
 function PlayerControl() {
   const [{ token }, dispatch] = useStateProvider();
   
-  
- 
-   const {uri,setUri}=useContext(MyContext)
+   const {uri}=useContext(MyContext)
  console.log("shilo",token);
   console.log('gracius',uri);
 
