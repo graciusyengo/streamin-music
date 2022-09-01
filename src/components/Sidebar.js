@@ -4,6 +4,9 @@ import { IoLibrary } from "react-icons/io5";
 import { MdHomeFilled, MdSearch } from "react-icons/md";
 import Playlist from "./Playlist";
 import {BiHeadphone} from "react-icons/bi"
+import { Link } from "react-router-dom";
+
+import {AiOutlineLike} from "react-icons/ai"
 
 export default function Sidebar() {
   return (
@@ -14,26 +17,30 @@ export default function Sidebar() {
           <h1> El magni</h1>
         </div>
         <ul>
-          <li >
+          <Link to="Recherche">
+          <li className="search" >
             <MdSearch />
-            <span>Recherche</span>
+            <a href="/">Recherche</a>
           </li>
-
+          </Link>
+          <Link to="/Home">
           <li>
             <MdHomeFilled />
-            <span> Accueil</span>
+            <a href="/"> Accueil</a>
           </li>
+          </Link>
           <li>
             <IoLibrary />
-            <span>Bibliotheque</span>
+            <a href="/">Bibliotheque</a>
           </li>
 
-          <li>
-            <IoLibrary />
-            <span>titre likés</span>
+          <li  className="like">
+          <AiOutlineLike/>
+            <a href="/">titre likés</a>
           </li>
         </ul>
       </div>
+      
       <Playlist />
     </Container>
   );
@@ -50,6 +57,9 @@ const Container = styled.div`
   .top_links{
     display:flex;
     flex-direction:column;
+    border-bottom-width:1px;
+    border-bottom-style: solid;
+    border-bottom-color:#ff7800;
   
     .logo{
       display:flex;
@@ -65,6 +75,7 @@ const Container = styled.div`
   .head-phone svg{
      height:40px;
      width:40px;
+     color:#ff7800;
    }
    h1{
    color: #ff7800;
@@ -82,6 +93,7 @@ const Container = styled.div`
   li{
     display:flex;
     gap:1rem;
+    color:white;
    
     cursor:pointer;
     transition:0.3s ease-in-out;
@@ -89,4 +101,8 @@ const Container = styled.div`
       color:#ff7800;
     }
   }
+  .like svg:hover{
+    color:#ff7800;
+  }
+  
 `;

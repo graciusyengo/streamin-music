@@ -4,6 +4,7 @@ import { useStateProvider } from "../util/StateProvider";
 import axios from "axios";
 import { reducerCases } from "../util/Constant";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Playlist() {
   const [{ token,playlists  },dispatch] = useStateProvider();
@@ -37,7 +38,9 @@ export default function Playlist() {
       {
         playlists.map(({name,id})=>{
           return(
-            <li key={id}>{name}</li>
+            <Link to="/TrackListPlaylist"> 
+            <li className="playlist"   key={id}>{name}</li>
+            </Link>
           )
         })
         
@@ -79,5 +82,6 @@ transition:0.3s ease-in-out;
   color:#ff7800;
 }
 }
+
 
 `

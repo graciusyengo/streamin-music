@@ -96,7 +96,7 @@ export default function Navbar({ navBackground }) {
           />
         </div>
         <div className="avatar">
-          <a href="">
+          <a href="/">
             <CgProfile />
             <span>{userInfo?.userName}</span>
           </a>
