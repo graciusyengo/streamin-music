@@ -11,6 +11,7 @@ root.render(
   <React.StrictMode>
     
       <StateProvider initialState={initialState} reducer={reducer}>
+        {console.log({"environnement": process.env.REACT_APP_CLIENT_ID})}
       <App />
       </StateProvider>
     
