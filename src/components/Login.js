@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 export default function Login() {
   const handleClick = () => {
-    const clientId = "9ab7e1d5cca7475a9e643ef2c9da7e2e";
-    const redirectUrl ="http://localhost:3000/Home"
-     //""; 
-    const apiUrl = "https://accounts.spotify.com/authorize";
+    const clientId = process.env.REACT_APP_CLIENT_ID;
+    const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const scope = [
       "user-read-email",
@@ -35,8 +34,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  h1{
-    font-size:56px;
- 
+  h1 {
+    font-size: 56px;
   }
 `;
