@@ -40,6 +40,8 @@ export default function Navbar({ navBackground }) {
 
   const renderSearch = (searches) => {
     return searches.map((search) => (
+      <>
+      
       <div key={search.id} className="card-artist">
         {search.images.length ? (
           <>
@@ -55,24 +57,22 @@ export default function Navbar({ navBackground }) {
           <div>pas d'info</div>
         )}
       </div>
+      </>
     ));
   };
 
   function artist() {
-    return (
-      <>
-        <h1>Artiste</h1>
-        {renderSearch(artists)}
-      </>
-    );
+    
+    return <>  <h1 className="title_result">artists</h1>{renderSearch(artists)}</>;
   }
 
   function album() {
-    return <>{renderSearch(albums)}</>;
+    return <> <h1 className="title_result">album</h1>{renderSearch(albums)}</>;
   }
 
   const getInput = (e) => {
     setSearch(e.target.value);
+    
   };
 
   function disconnect() {
@@ -81,7 +81,6 @@ export default function Navbar({ navBackground }) {
       token: "",
     });
     window.localStorage.removeItem("token");
-
   }
 
   return (
@@ -100,19 +99,18 @@ export default function Navbar({ navBackground }) {
             <CgProfile />
             <span>{userInfo?.userName}</span>
           </a>
-           <Link to='/'> 
-           <button onClick={disconnect}> se deconnecter</button> 
-           </Link> 
+          <Link to="/">
+            <button onClick={disconnect}> se deconnecter</button>
+          </Link>
         </div>
       </Container>
-      <div className="artist-container">
-        {search ? (
-          <>
-            {album()}
-            {artist()}
-          </>
-        ) : null}
-      </div>
+
+     
+     
+      <div className="artist-container">{search ? artist() : null}</div>
+
+      
+      <div className="album-container">{search ? <>{album()}</> : null}</div>
     </>
   );
 }
@@ -188,7 +186,11 @@ background-color:${({ navBackground }) =>
             border-radius:1rem;
         }
     }
+  
+   
    
 
 }
+
+
 `;

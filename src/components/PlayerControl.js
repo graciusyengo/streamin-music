@@ -1,40 +1,35 @@
-import React,{useContext } from 'react'
-import SpotifyPlayer from 'react-spotify-web-playback/lib'
+import React, { useContext } from "react";
+import SpotifyPlayer from "react-spotify-web-playback/lib";
 import { useStateProvider } from "../util/StateProvider";
-import { MyContext } from './MyContext';
+import { MyContext } from "./MyContext";
 
 function PlayerControl() {
   const [{ token }, dispatch] = useStateProvider();
-  
-   const {uri}=useContext(MyContext)
- console.log("shilo",token);
-  console.log('gracius',uri);
 
-  return(
-  <div>
-    <SpotifyPlayer
-  token={token}
-  uris={uri}
+  const { uri } = useContext(MyContext);
+  console.log("shilo", token);
+  console.log("gracius", uri);
 
-  styles = { { 
-    activeColor : '#fff' , 
-    bgColor : '#333' , 
-    color : '#fff' , 
-    loaderColor : '#fff' , 
-    sliderColor : '#1cb954' , 
-    trackArtistColor : '# ccc' , 
-    trackNameColor : '#fff' , 
-  } } 
-/>
-  </div>
-  
-  )
-
-  
- 
+  return (
+    <div>
+      <SpotifyPlayer
+        token={token}
+        uris={uri}
+        styles={{
+          activeColor: "#fff",
+          bgColor: "#333",
+          color: "#fff",
+          loaderColor: "#fff",
+          sliderColor: "#1cb954",
+          trackArtistColor: "#ccc",
+          trackNameColor: "#fff",
+        }}
+      />
+    </div>
+  );
 }
 
-export default PlayerControl
+export default PlayerControl;
 
 // import React from 'react'
 // import styled from 'styled-components'
@@ -45,11 +40,10 @@ export default PlayerControl
 // import axios from 'axios'
 // import { reducerCases } from "../util/Constant";
 
-
 // export default function PlayerControl() {
 //     const [{ token,playerState  },dispatch] = useStateProvider();
 //     const changeTrack=async(type)=>{
-//      await axios.post(`https://api.spotify.com/v1/me/player/${type}`, 
+//      await axios.post(`https://api.spotify.com/v1/me/player/${type}`,
 //      {},{
 //         headers: {
 //           Authorization: "Bearer "+ token,
@@ -103,7 +97,7 @@ export default PlayerControl
 // align-items:center;
 // justify-content:center;
 // gap:2rem;
-// svg{ 
+// svg{
 // color:#3b3b3;
 
 // transition:0.2 ease-in-out;
@@ -121,6 +115,5 @@ export default PlayerControl
 //     font-size:2rem;
 
 // }
-
 
 // `

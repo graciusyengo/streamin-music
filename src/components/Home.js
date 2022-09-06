@@ -47,20 +47,19 @@ export default function Home() {
   return (
     <Container>
       <div className="streaming_body">
-        <Sidebar />
+        <Sidebar/>
         <div className="body" ref={bodyRef} onScroll={bodyScrolled}>
           <Navbar  navBackground={navBackground}/>
           <div className="body_contents">
             <Body  headerBackground={headerBackground}/>
           </div>
+          <h1 className="trackRecently">écouter récenment</h1>
           <div className="artist-container">
           <TrackRecently/>
           </div>
         </div>
       </div>
-      <div className="streaming_footer">
-        <Footer />
-      </div>
+     
     </Container>
   );
 }
@@ -69,7 +68,7 @@ const Container = styled.div`
   max-height: 100vh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: 85vh 15vh;
+  grid-template-rows: 85vh ;
   .streaming_body {
     display: flex;
     align-items: stretch;
@@ -81,5 +80,9 @@ const Container = styled.div`
     height: 100%;
     width: 100%;
     overflow: auto;
+  }
+  .trackRecently{
+    margin-left: 2rem;
+
   }
 `;

@@ -48,7 +48,13 @@ button:hover{
   display: flex;
   flex-direction:row;
 }
-.artist-container {
+.artist{
+  margin-left:2rem;
+}
+.album{
+  margin-left:2rem;
+}
+.artist-container ,.album-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -76,6 +82,13 @@ button:hover{
 .card-image img {
   height: 200px;
 }
+
+.title_result {
+  width: 100%;
+  margin-left: 2rem;
+}
+
+
 
 .card-body {
   width: 100%;

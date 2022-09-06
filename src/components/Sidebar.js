@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { IoLibrary } from "react-icons/io5";
 import { MdHomeFilled, MdSearch } from "react-icons/md";
@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
 import {AiOutlineLike} from "react-icons/ai"
 
 export default function Sidebar() {
+  const [hello, setHello] = useState();
+  useEffect(() => {
+    console.log("Hello Word!");
+  }, [hello])
   return (
     <Container>
       <div className="top_links">
@@ -17,7 +21,7 @@ export default function Sidebar() {
           <h1> El magni</h1>
         </div>
         <ul>
-          <Link to="Recherche">
+          <Link to="/Recherche">
           <li className="search" >
             <MdSearch />
             <a href="/">Recherche</a>

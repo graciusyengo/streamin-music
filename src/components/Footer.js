@@ -8,7 +8,7 @@ import PlayerControl from './PlayerControl'
 export default function Footer() {
   return (
     <Container>
-      <PlayerControl/>
+       <PlayerControl/> 
     </Container>
   )
 }
