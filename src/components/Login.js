@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Login() {
   const handleClick = () => {
     const clientId = process.env.REACT_APP_CLIENT_ID;
-    const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+    let redirectUrl = process.env.REACT_APP_REDIRECT_URL;
     const apiUrl = process.env.REACT_APP_API_URL;
 
     if (process.env.NODE_ENV === 'production') {
