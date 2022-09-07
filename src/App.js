@@ -39,7 +39,10 @@ export default function App() {
           </Routes>
         </BrowserRouter>
         <div className="streaming_footer">
-          <Footer />
+          {
+            token &&
+            <Footer />
+          }
         </div>
       </MyContext.Provider>
     </div>

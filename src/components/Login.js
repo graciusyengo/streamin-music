@@ -7,6 +7,11 @@ export default function Login() {
     const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
     const apiUrl = process.env.REACT_APP_API_URL;
 
+    if (process.env.NODE_ENV === 'production') {
+
+      redirectUrl = process.env.REACT_APP_REDIRECT_URL_PROD
+      
+    }
     const scope = [
       "user-read-email",
       "user-read-private",
